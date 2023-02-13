@@ -22,4 +22,4 @@ ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.envir
 
 PORT = os.environ.get('PORT', '8080')
 
-LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', ''))
+LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', '-1001745143192'))
