@@ -31,6 +31,8 @@
 
 * `START_PIC` - start message photo
 
+* `LOG_CHANNEL` - id of channel in which you gets logs 
+
 ## Botfather Commands
 ```
 start - bot alive cheking
