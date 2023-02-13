@@ -43,5 +43,6 @@ see_caption - see your custom caption
 del_caption - delete custom caption
 users - admin only
 broadcast - admin only
+restart - admin only
 ```
 
