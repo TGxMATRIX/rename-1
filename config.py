@@ -1,5 +1,5 @@
 import re, os
-
+from pyrogram import Client, compose,idle
 from plugins.cb_data import app as Client2
 
 id_pattern = re.compile(r'^.\d+$') 
@@ -25,3 +25,17 @@ ADMIN = [int(admin) if id_pattern.search(admin) else admin for admin in os.envir
 PORT = os.environ.get('PORT', '8080')
 
 LOG_CHANNEL = int(os.environ.get('LOG_CHANNEL', '-1001745143192'))
+
+STRING = os.environ.get("STRING", "")
+
+
+if STRING:
+    apps = [Client2,bot]
+    for app in apps:
+        app.start()
+    idle()
+    for app in apps:
+        app.stop()
+    
+else:
+    bot.run()
