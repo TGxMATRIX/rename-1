@@ -1,5 +1,7 @@
 import re, os
 
+from plugins.cb_data import app as Client2
+
 id_pattern = re.compile(r'^.\d+$') 
 
 API_ID = os.environ.get("API_ID", "11615722")
