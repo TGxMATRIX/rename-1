@@ -27,10 +27,29 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceReply, CallbackQuery
 from pyrogram.errors import FloodWait
 import humanize
+import time
 import random
 from helper.txt import mr
-from helper.database import db
+from helper.database import *
 from config import START_PIC, FLOOD, ADMIN, LOG_CHANNEL
+from helper.date import add_date ,check_expi
+import datetime
+CHANNEL = os.environ.get('CHANNEL',"")
+from datetime import date as date_
+STRING = os.environ.get("STRING","")
+log_channel = int(os.environ.get("LOG_CHANNEL",""))
+token = os.environ.get('TOKEN','')
+botid = token.split(':')[0]
+
+#Part of Day --------------------
+currentTime = datetime.datetime.now()
+
+if currentTime.hour < 12:
+	wish = "Good morning."
+elif 12 <= currentTime.hour < 12:
+	wish = 'Good afternoon.'
+else:
+	wish = 'Good evening.'
 
 
 @Client.on_message(filters.private & filters.command(["start"]))
@@ -153,5 +172,17 @@ async def bot_restart(bot, message):
     await msg.edit("✅️ 𝙱𝙾𝚃 𝙸𝚂 𝚁𝙴𝚂𝚃𝙰𝚁𝚃𝙴𝙳! 𝙽𝙾𝚆 𝚈𝙾𝚄 𝙲𝙰𝙽 𝚄𝚂𝙴 𝙼𝙴.")
     os.execl(sys.executable, sys.executable, *sys.argv)
     
-
-
+@Client.on_message(filters.command('stats')
+async def stats(bot, message):
+    try:
+        await message.reply_text('stats')
+    except Exception as e:
+        await message.reply(str(e))
+                   
+@Client.on_message(filters.command('logs') & filters.user(ADMINS))
+async def log_file(bot, message):
+    """Send log file"""
+    try:
+        await message.reply_document('TelegramBot.log')
+    except Exception as e:
+        await message.reply(str(e))
